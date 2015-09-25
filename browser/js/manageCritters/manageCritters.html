@@ -1,0 +1,16 @@
+<section id='manage-critters'>
+
+  <h3>Active Critter: {{activeCritter.name}}</h3>
+
+  <button ui-sref='manageCritters.detail({id: "new"})'>Add Critter</button>
+
+  <div ng-repeat='critter in critters'>
+
+    <button ui-sref='manageCritters.detail({id: critter._id})'>{{critter.name}}</button>
+
+  </div>
+
+  <ui-view></ui-view>
+
+
+</section>

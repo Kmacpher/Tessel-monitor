@@ -4,6 +4,7 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 router.use('/measure', require('./measure'));
+router.use('/critters', require('./critters'));
 
 // Make sure this is after all of
 // the registered routes!

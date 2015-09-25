@@ -3,17 +3,23 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  name: String,
-  species: {
+  name: {
+    type: String,
+    unique: true
+  },
+  phone: {
     type: String,
     required: true
   },
-  temps: {
+  species: {
+    type: String
+  },
+  temperature: {
     high: {
       type: Number,
       required: true
     },
-    Low: {
+    low: {
       type: Number,
       required: true
     }
@@ -23,11 +29,15 @@ var schema = new mongoose.Schema({
       type: Number,
       required: true
     },
-    Low: {
+    low: {
       type: Number,
       required: true
     }
+  },
+  active: {
+    type: Boolean,
+    default: false
   }
 });
 
-mongoose.model('Reptile', schema);
+mongoose.model('Critter', schema);

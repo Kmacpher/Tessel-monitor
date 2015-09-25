@@ -21,29 +21,49 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
-var User = Promise.promisifyAll(mongoose.model('User'));
+//var User = Promise.promisifyAll(mongoose.model('User'));
+var Critter = Promise.promisifyAll(mongoose.model('Critter'));
 
-var seedUsers = function () {
+var seedCritters = function () {
 
-    var users = [
+    var critters = [
         {
-            email: 'testing@fsa.com',
-            password: 'password'
+            name: 'Fira',
+            species: 'Ball Python',
+            phone: '2148682420',
+            temperature: {
+                high: 91,
+                low: 80
+            },
+            humidity: {
+                high: 90,
+                low: 60
+            },
+            active: true
         },
         {
-            email: 'obama@gmail.com',
-            password: 'potus'
+            name: 'Loki',
+            species: 'Bearded Dragon',
+            phone: '2148682420',
+            temperature: {
+                high: 110,
+                low: 75
+            },
+            humidity: {
+                high: 50,
+                low: 10
+            }
         }
     ];
 
-    return User.createAsync(users);
+    return Critter.createAsync(critters);
 
 };
 
 connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
+    Critter.findAsync({}).then(function (critters) {
+        if (critters.length === 0) {
+            return seedCritters();
         } else {
             console.log(chalk.magenta('Seems to already be user data, exiting!'));
             process.kill(0);
