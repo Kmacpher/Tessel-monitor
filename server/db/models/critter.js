@@ -3,7 +3,12 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  name: String,
+  //maybe just a species 
+  //you can alter the presets if you want to
+  name: {
+    type: String,
+    unique: true
+  },
   species: {
     type: String,
     required: true
@@ -30,4 +35,4 @@ var schema = new mongoose.Schema({
   }
 });
 
-mongoose.model('Reptile', schema);
+mongoose.model('Setting', schema);
