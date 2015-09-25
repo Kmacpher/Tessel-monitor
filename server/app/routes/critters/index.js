@@ -14,4 +14,12 @@ router.get('/active', function(req, res, next) {
   }).then(null, next);
 });
 
+router.get('/:id', function(req, res, next) {
+  console.log('in the right route');
+  console.log(req.params.id);
+  Critter.findById(req.params.id).then(function(critter) {
+    res.send(critter);
+  }).then(null, next);
+});
+
 module.exports = router;
