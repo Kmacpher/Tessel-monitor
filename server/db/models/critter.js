@@ -14,7 +14,7 @@ var schema = new mongoose.Schema({
   species: {
     type: String
   },
-  temps: {
+  temperature: {
     high: {
       type: Number,
       required: true
