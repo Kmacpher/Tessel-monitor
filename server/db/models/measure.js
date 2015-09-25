@@ -15,6 +15,10 @@ var schema = new mongoose.Schema({
   temperature: {
     type: Number,
     required: true
+  },
+  critter: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Critter'
   }
 
 });

@@ -8,4 +8,10 @@ router.get('/', function(req, res, next) {
   }).then(null, next);
 });
 
+router.get('/active', function(req, res, next) {
+  Critter.findOne({active: true}).then(function(critter) {
+    res.send(critter);
+  }).then(null, next);
+});
+
 module.exports = router;

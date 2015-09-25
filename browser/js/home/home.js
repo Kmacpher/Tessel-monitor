@@ -4,33 +4,42 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/home/home.html',
         controller: 'HomeCtrl',
         resolve: {
-          measurements: function(MeasureFactory) {
-            return MeasureFactory.getMeasurements();
+          activeCritter: function(CritterFactory) {
+            return CritterFactory.getActiveCritter();
           }
         }
     });
 });
 
-app.controller('HomeCtrl', function($scope, MeasureFactory, measurements, $state) {
+app.controller('HomeCtrl', function($scope, MeasureFactory, activeCritter) {
 
-    $scope.measurements = measurements;
-    $scope.current = measurements[measurements.length-1];
+    $scope.activeCritter = activeCritter;
 
-    setInterval(function() {
-      MeasureFactory.getMeasurements()
-      .then(function(measurements) {
+    MeasureFactory.getMeasurements($scope.activeCritter._id)
+    .then(function(measurements) {
+
         $scope.measurements = measurements;
         $scope.current = measurements[measurements.length-1];
-      });
 
-    },5000);
+        setInterval(function() {
+          MeasureFactory.getMeasurements($scope.activeCritter._id)
+          .then(function(measures) {
+            $scope.measurements = measures;
+            $scope.current = measures[measures.length-1];
+          });
+
+        },5000);
+
+    });
+    
     //this continues to run constantly. 
     //actually only need to run when on this - maybe a set timeout and recursive function?
+    //maybe set a limit that you get? ( in routes )
 
 
     //will need to add id of critter
     $scope.deleteMeasurements = function() {
-      MeasureFactory.deleteMeasurements()
+      MeasureFactory.deleteMeasurements($scope.activeCritter._id)
       .then(function() {
         console.log('all measurements deleted');
       });
@@ -40,16 +49,16 @@ app.controller('HomeCtrl', function($scope, MeasureFactory, measurements, $state
 
 app.factory('MeasureFactory', function($http) {
 
-  var getMeasurements = function() {
-    return $http.get('/api/measure/')
+  var getMeasurements = function(critterId) {
+    return $http.get('/api/measure/' + critterId)
     .then(function(res) {
       return res.data;
     });
   };
 
   //will need to add id of critter
-  var deleteMeasurements = function() {
-    return $http.delete('/api/measure')
+  var deleteMeasurements = function(critterId) {
+    return $http.delete('/api/measure/' + critterId)
     .then(function() {
       return;
     });
