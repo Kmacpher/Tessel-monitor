@@ -9,6 +9,17 @@ function getActiveCritter() {
   return Critter.findOne({active: true});
 }
 
+function compareData(critter, postData) {
+    if(critter.temperature.low > postData.temperature)
+      console.log('temp is too low');
+    if(critter.temperature.high < postData.temperature)
+      console.log('temp is too high');
+    if(critter.humidity.low > postData.humidity)
+      console.log('humidity is too low');
+    if(critter.humidity.high < postData.humidity)
+      console.log('temp is too low');
+}
+
 router.get('/:id', function(req, res, next) {
   Measure.find({critter: req.params.id}).then(function(measures) {
     res.send(measures);
@@ -28,18 +39,13 @@ router.post('/', function(req, res, next) {
     postData.critter = critter._id;
     Measure.create(postData)
       .then(function() {
-      res.status(201).send().end();
-      //do I check highs and lows or just send it back?
-      //depends on where twilio is working.
-      //data visualization needs to change color here too
+        compareData(critter, postData);
+        res.status(201).send().end();
     }).then(null, next);
-
   }).then(null, console.error);
-  
-  
+   
 });
 
-//to clear all measurements
 router.delete('/:id', function(req, res, next) {
   Measure.remove({critter: req.params.id})
   .then(function() {
