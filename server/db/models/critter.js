@@ -19,7 +19,7 @@ var schema = new mongoose.Schema({
       type: Number,
       required: true
     },
-    Low: {
+    low: {
       type: Number,
       required: true
     }
@@ -29,7 +29,7 @@ var schema = new mongoose.Schema({
       type: Number,
       required: true
     },
-    Low: {
+    low: {
       type: Number,
       required: true
     }
@@ -40,4 +40,4 @@ var schema = new mongoose.Schema({
   }
 });
 
-mongoose.model('Setting', schema);
+mongoose.model('Critter', schema);
