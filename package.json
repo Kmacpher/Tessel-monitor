@@ -58,7 +58,6 @@
     "sinon": "^1.13.0",
     "socket.io": "^1.3.4",
     "socket.io-client": "^1.3.5",
-    "supertest": "^0.15.0",
-    "tessel": "^0.3.23"
+    "supertest": "^0.15.0"
   }
 }
