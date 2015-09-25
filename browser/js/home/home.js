@@ -14,16 +14,19 @@ app.config(function ($stateProvider) {
 app.controller('HomeCtrl', function($scope, MeasureFactory, measurements, $state) {
 
     $scope.measurements = measurements;
+    $scope.current = measurements[measurements.length-1];
 
     setInterval(function() {
       MeasureFactory.getMeasurements()
       .then(function(measurements) {
         $scope.measurements = measurements;
         $scope.current = measurements[measurements.length-1];
-        console.log('new scope');
       });
 
     },5000);
+    //this continues to run constantly. 
+    //actually only need to run when on this - maybe a set timeout and recursive function?
+
 
     //will need to add id of critter
     $scope.deleteMeasurements = function() {

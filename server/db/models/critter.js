@@ -3,15 +3,16 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  //maybe just a species 
-  //you can alter the presets if you want to
   name: {
     type: String,
     unique: true
   },
-  species: {
+  phone: {
     type: String,
     required: true
+  },
+  species: {
+    type: String
   },
   temps: {
     high: {
@@ -32,6 +33,10 @@ var schema = new mongoose.Schema({
       type: Number,
       required: true
     }
+  },
+  active: {
+    type: Boolean,
+    default: false
   }
 });
 
