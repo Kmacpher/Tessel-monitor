@@ -1,8 +1,8 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('home', {
+    $stateProvider.state('monitor', {
         url: '/',
-        templateUrl: 'js/home/home.html',
-        controller: 'HomeCtrl',
+        templateUrl: 'js/monitor/monitor.html',
+        controller: 'MonitorCtrl',
         resolve: {
           activeCritter: function(CritterFactory) {
             return CritterFactory.getActiveCritter();
@@ -11,7 +11,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function($scope, MeasureFactory, activeCritter) {
+app.controller('MonitorCtrl', function($scope, MeasureFactory, activeCritter) {
 
     $scope.activeCritter = activeCritter;
 

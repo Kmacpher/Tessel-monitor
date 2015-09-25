@@ -2,6 +2,14 @@
 
 <button ng-click=''>Add Critter</button>
 
+<h3>Active Critter: {{activeCritter.name}}</h3>
+
+<div ng-repeat='critter in critters'>
+
+  <button>{{critter.name}}</button>
+
+</div>
+
 Active Critter: {{activeCritter}}
 
 {{critters}}
