@@ -4,20 +4,31 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Measure = mongoose.model('Measure');
 var Critter = mongoose.model('Critter');
+var myTwilio = require('./twilio');
 
 function getActiveCritter() {
   return Critter.findOne({active: true});
 }
 
 function compareData(critter, postData) {
-    if(critter.temperature.low > postData.temperature)
-      console.log('temp is too low');
-    if(critter.temperature.high < postData.temperature)
-      console.log('temp is too high');
-    if(critter.humidity.low > postData.humidity)
-      console.log('humidity is too low');
-    if(critter.humidity.high < postData.humidity)
-      console.log('temp is too low');
+    if(critter.temperature.low > postData.temperature) {
+      myTwilio.sendMessage(critter, 'temperature', postData);
+    }
+      
+    if(critter.temperature.high < postData.temperature) {
+      myTwilio.sendMessage(critter, 'temperature', postData);
+    }
+      
+
+    if(critter.humidity.low > postData.humidity) {
+      myTwilio.sendMessage(critter, 'humidity', postData);
+    }
+      
+
+    if(critter.humidity.high < postData.humidity) {
+      myTwilio.sendMessage(critter, 'humidity', postData);
+    }
+      
 }
 
 router.get('/:id', function(req, res, next) {
