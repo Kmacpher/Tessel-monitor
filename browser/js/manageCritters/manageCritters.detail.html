@@ -1,66 +1,65 @@
 <form name='editCritterForm' ng-submit='editCritterForm.$valid && editCritter()'>
     <div class='container detail'>
         <div class='row title-row'>
-          <button class='btn btn-info col-md-2'>Make Active</button>
-          <h1 class='col-md-8 center'>{{critter.name}} - {{critter.species}}</h1>
-          
+            <button class='btn btn-info col-md-2'>Make Active</button>
+            <h1 class='col-md-8 center'>{{critter.name || 'New Critter'}}</h1>
         </div>
         <div class='row'>
             <div class='col-md-6'>
-              <div class='form-group'>
-                <label>Name:</label>
-                <input type='text' class='form-control' ng-model='critter.name'>
-              </div>
-              <div class='form-group'>
-                <label>Species:</label>
-                <input type='text' class='form-control' ng-model='critter.species'>
-              </div>
-              <div class='form-group'>
-                <label>Phone Number:</label>
-                <input type='text' class='form-control' ng-model='critter.phone'>
-              </div>
-              <div class='form-group'>
-                <label>Image Source:</label>
-                <input type="text" class='form-control' ng-model="critter.photo">
-              </div>
+                <div class='form-group'>
+                    <label>Name:</label>
+                    <input type='text' class='form-control' ng-model='critter.name'>
+                </div>
+                <div class='form-group'>
+                    <label>Species:</label>
+                    <input type='text' class='form-control' ng-model='critter.species'>
+                </div>
+                <div class='form-group'>
+                    <label>Phone Number:</label>
+                    <input type='text' class='form-control' ng-model='critter.phone'>
+                </div>
+                <div class='form-group'>
+                    <label>Image Source:</label>
+                    <input type="text" class='form-control' ng-model="critter.photo">
+                </div>
             </div>
             <div class='col-md-6'>
-                <img class='critter-image' ng-src='{{critter.photo}}'>
+                <img class='critter-image' ng-src='{{critter.photo || "http://orig11.deviantart.net/cf4a/f/2014/171/d/a/toothless_chibi___how_to_train_your_dragon_by_hikariuta-d7n64gv.png"}}'>
             </div>
         </div>
-
         <div class='row'>
-          <div class='col-md-6'>
-            <h2>Temperature</h2>
-            <div class='form-group'>
-              <label>High:</label>
-              <input type='text' class='form-control' ng-model='critter.temperature.high'>
+            <div class='col-md-6'>
+                <h2>Temperature</h2>
+                <div class='form-group'>
+                    <label>High:</label>
+                    <input type='text' class='form-control' ng-model='critter.temperature.high'>
+                </div>
+                <div class='form-group'>
+                    <label>Low:</label>
+                    <input type='text' class='form-control' ng-model='critter.temperature.low'>
+                </div>
             </div>
-            <div class='form-group'>
-              <label>Low:</label>
-              <input type='text' class='form-control' ng-model='critter.temperature.low'>
+            <div class='col-md-6'>
+                <h2>Humidity</h2>
+                <div class='form-group'>
+                    <label>High:</label>
+                    <input type='text' class='form-control' ng-model='critter.humidity.high'>
+                </div>
+                <div class='form-group'>
+                    <label>Low:</label>
+                    <input type='text' class='form-control' ng-model='critter.humidity.low'>
+                </div>
             </div>
-          </div>
-          <div class='col-md-6'>
-            <h2>Humidity</h2>
-            <div class='form-group'>
-              <label>High:</label>
-              <input type='text' class='form-control' ng-model='critter.humidity.high'>
-            </div>
-            <div class='form-group'>
-              <label>Low:</label>
-              <input type='text' class='form-control' ng-model='critter.humidity.low'>
-            </div>
-          </div>
         </div>
         <div class='row'>
-          <div class='col-md-6'>
-            <button type='submit' class='btn btn-danger col-md-6 submit-btn'>Cancel</button>
-          </div>
-          <div class='col-md-6'>
-            <button class='btn btn-success col-md-6 submit-btn'>Save</button>
-          </div>
-      </div>
+            <div class='col-md-6'>
+                <button type='submit' ng-click='deleteCritter()' class='btn btn-danger submit-btn'>Delete</button>
+            </div>
+            <div class='col-md-6'>
+                <button ng-click='updateCritter()' class='btn btn-success submit-btn'>Save</button>
+            </div>
+        </div>
+        <h3 class='err-message'>{{message}}</h3>
     </div>
 </form>
 <br>

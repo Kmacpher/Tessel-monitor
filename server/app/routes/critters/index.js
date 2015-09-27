@@ -15,10 +15,27 @@ router.get('/active', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  console.log('in the right route');
-  console.log(req.params.id);
   Critter.findById(req.params.id).then(function(critter) {
     res.send(critter);
+  }).then(null, next);
+});
+
+router.delete('/:id', function(req, res, next) {
+  Critter.remove({_id: req.params.id}).then(function() {
+    res.status(204).end();
+  }).then(null, next);
+});
+
+router.put('/:id', function(req, res, next) {
+  Critter.update({_id: req.params.id}, {$set: req.body})
+  .then(function() {
+    res.status(201).end();
+  }).then(null, next);
+});
+
+router.post('/', function(req, res, next) {
+  Critter.create(req.body).then(function(critter) {
+    res.status(201).send(critter);
   }).then(null, next);
 });
 
