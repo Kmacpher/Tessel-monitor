@@ -24,7 +24,6 @@ app.factory('CritterFactory', function($http) {
     
     //createCritter
     //deleteCritter
-    //getAllCritters
     //updateCritter
 
     return {
