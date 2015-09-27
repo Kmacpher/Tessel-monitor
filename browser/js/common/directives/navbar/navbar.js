@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, CritterFactory) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
@@ -6,13 +6,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
-            CritterFactory.getActiveCritter()
-            .then(function(activeCritter) {
-                scope.items = [
-                    { label: 'Monitor', state: 'monitor' },
-                    { label: 'Manage Critters', state: 'manageCritters.detail'}
-                ];
-            });
+            scope.items = [
+                { label: 'Monitor', state: 'monitor' },
+                { label: 'Manage Critters', state: 'manageCritters.detail'}
+            ];
+           
 
 
             scope.user = null;

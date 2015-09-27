@@ -37,7 +37,8 @@ var schema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: false
-  }
+  },
+  lastAlerted: Date
 });
 
 mongoose.model('Critter', schema);
