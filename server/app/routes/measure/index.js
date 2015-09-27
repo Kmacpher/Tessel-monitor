@@ -11,21 +11,11 @@ function getActiveCritter() {
 }
 
 function compareData(critter, postData) {
-    if(critter.temperature.low > postData.temperature) {
+    if(critter.temperature.low > postData.temperature || critter.temperature.high < postData.temperature) {
       myTwilio.sendMessage(critter, 'temperature', postData);
     }
-      
-    if(critter.temperature.high < postData.temperature) {
-      myTwilio.sendMessage(critter, 'temperature', postData);
-    }
-      
 
-    if(critter.humidity.low > postData.humidity) {
-      myTwilio.sendMessage(critter, 'humidity', postData);
-    }
-      
-
-    if(critter.humidity.high < postData.humidity) {
+    if(critter.humidity.low > postData.humidity || critter.humidity.high < postData.humidity) {
       myTwilio.sendMessage(critter, 'humidity', postData);
     }
       
