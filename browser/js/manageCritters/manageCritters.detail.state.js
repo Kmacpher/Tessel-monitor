@@ -17,9 +17,47 @@ app.config(function ($stateProvider) {
     
 });
 
-app.controller('CritterCtrl', function($scope, critter, activeCritter) {
-
+app.controller('CritterCtrl', function($scope, critter, activeCritter, CritterFactory, $stateParams, $state) {
+  $scope.newCritter = ($stateParams.id === 'new');
   $scope.critter = critter;
   $scope.activeCritter = activeCritter;
+  $scope.message = "";
+
+  $scope.updateCritter = function() {
+    if($scope.newCritter) {
+      CritterFactory.createCritter($scope.critter)
+      .then(function() {
+        CritterFactory.getAllCritters()
+        .then(function(critters) {
+          $scope.$parent.critters = critters;
+        });
+      });
+    }
+    else {
+      CritterFactory.updateCritter($scope.critter)
+      .then(function(critter) {
+        $scope.message = $scope.critter.name + '\'s settings were successfully updated';
+      });
+    }
+  };
+
+
+  $scope.deleteCritter = function() {
+    if($scope.critter.active) {
+      $scope.message = 'You can\'t delete your active critter';
+      return;
+    }
+    CritterFactory.deleteCritter($scope.critter)
+    .then(function() {
+      CritterFactory.getAllCritters()
+      .then(function(critters) {
+        $scope.$parent.critters = critters;
+        $state.go('manageCritters.deleted');
+      });
+      
+      
+    });
+
+  };
 
 });

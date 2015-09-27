@@ -15,21 +15,39 @@ app.factory('CritterFactory', function($http) {
     };
 
     var getCritter = function(critterId) {
-        console.log('in the getCritter');
         return $http.get('/api/critters/' + critterId)
         .then(function(res) {
             return res.data;
         });
     };
-    
-    //createCritter
-    //deleteCritter
-    //getAllCritters
-    //updateCritter
 
+    var deleteCritter = function(critter) {
+        return $http.delete('/api/critters/' + critter._id)
+        .then(function(res) {
+            return res.data;
+        });
+    };
+
+    var updateCritter = function(critter) {
+        return $http.put('/api/critters/' + critter._id, critter)
+        .then(function(res) {
+            return res.data;
+        });
+    };
+
+    var createCritter = function(critter) {
+        return $http.post('/api/critters/', critter)
+        .then(function(res) {
+            return res.data;
+        });
+    };
+    
     return {
         getAllCritters: getAllCritters,
         getActiveCritter: getActiveCritter,
-        getCritter: getCritter
+        getCritter: getCritter,
+        deleteCritter: deleteCritter,
+        createCritter: createCritter,
+        updateCritter: updateCritter
     };
 });

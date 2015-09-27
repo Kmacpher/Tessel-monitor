@@ -39,7 +39,8 @@ var seedCritters = function () {
                 high: 90,
                 low: 60
             },
-            active: true
+            active: true,
+            photo: 'https://static.fjcdn.com/comments/People+like+my+snake+or+something+_8c9bd0113459f7c48e1ca1cbc1b3ae72.png'
         },
         {
             name: 'Loki',
@@ -52,7 +53,8 @@ var seedCritters = function () {
             humidity: {
                 high: 50,
                 low: 10
-            }
+            },
+            photo: 'http://orig04.deviantart.net/c748/f/2013/322/f/3/f3155c00b993c4c8100115076583e118-d6uqreq.png'
         }
     ];
 
