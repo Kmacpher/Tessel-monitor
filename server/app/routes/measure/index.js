@@ -4,9 +4,21 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Measure = mongoose.model('Measure');
 var Critter = mongoose.model('Critter');
+var myTwilio = require('./twilio');
 
 function getActiveCritter() {
   return Critter.findOne({active: true});
+}
+
+function compareData(critter, postData) {
+    if(critter.temperature.low > postData.temperature || critter.temperature.high < postData.temperature) {
+      myTwilio.sendMessage(critter, 'temperature', postData);
+    }
+
+    if(critter.humidity.low > postData.humidity || critter.humidity.high < postData.humidity) {
+      myTwilio.sendMessage(critter, 'humidity', postData);
+    }
+      
 }
 
 router.get('/:id', function(req, res, next) {
@@ -28,18 +40,13 @@ router.post('/', function(req, res, next) {
     postData.critter = critter._id;
     Measure.create(postData)
       .then(function() {
-      res.status(201).send().end();
-      //do I check highs and lows or just send it back?
-      //depends on where twilio is working.
-      //data visualization needs to change color here too
+        compareData(critter, postData);
+        res.status(201).send().end();
     }).then(null, next);
-
   }).then(null, console.error);
-  
-  
+   
 });
 
-//to clear all measurements
 router.delete('/:id', function(req, res, next) {
   Measure.remove({critter: req.params.id})
   .then(function() {

@@ -7,10 +7,12 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         link: function (scope) {
 
 
+
             scope.items = [
                 { label: 'Monitor', state: 'monitor' },
                 { label: 'Manage Critters', state: 'manageCritters.detail'}
             ];
+           
 
 
 
