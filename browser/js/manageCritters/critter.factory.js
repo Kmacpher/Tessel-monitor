@@ -41,6 +41,13 @@ app.factory('CritterFactory', function($http) {
             return res.data;
         });
     };
+
+    var makeActive = function(critter) {
+        return $http.put('/api/critters/active/' + critter._id)
+        .then(function(res) {
+            return res.data;
+        });
+    };
     
     return {
         getAllCritters: getAllCritters,
@@ -48,6 +55,7 @@ app.factory('CritterFactory', function($http) {
         getCritter: getCritter,
         deleteCritter: deleteCritter,
         createCritter: createCritter,
-        updateCritter: updateCritter
+        updateCritter: updateCritter,
+        makeActive: makeActive
     };
 });

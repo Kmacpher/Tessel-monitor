@@ -1,8 +1,14 @@
 <form name='editCritterForm' ng-submit='editCritterForm.$valid && editCritter()'>
     <div class='container detail'>
         <div class='row title-row'>
-            <button class='btn btn-info col-md-2'>Make Active</button>
+            <div class='col-md-2'>
+              <button class='btn btn-info' ng-hide='critter.active' ng-click='makeActive()'><strong>Make Active</strong></button>
+              <button class='btn btn-success' ng-show="critter.active"><strong>Active!</strong></button>
+            </div>
             <h1 class='col-md-8 center'>{{critter.name || 'New Critter'}}</h1>
+            <div class='col-md-2'>
+              <button class='btn btn-info' ui-sref = 'manageCritters.logs({id: critter._id})'>View Logs</button>
+            </div>
         </div>
         <div class='row'>
             <div class='col-md-6'>
@@ -29,7 +35,7 @@
         </div>
         <div class='row'>
             <div class='col-md-6'>
-                <h2>Temperature</h2>
+                <h2 class='center'>Temperature</h2>
                 <div class='form-group'>
                     <label>High:</label>
                     <input type='text' class='form-control' ng-model='critter.temperature.high'>
@@ -40,7 +46,7 @@
                 </div>
             </div>
             <div class='col-md-6'>
-                <h2>Humidity</h2>
+                <h2 class='center'>Humidity</h2>
                 <div class='form-group'>
                     <label>High:</label>
                     <input type='text' class='form-control' ng-model='critter.humidity.high'>

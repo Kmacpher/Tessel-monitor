@@ -1,5 +1,11 @@
 .detail {
-  width: 70%;
+  width: 80%;
+  input {
+    width: 85%;
+  }
+  h2 {
+    width: 85%;
+  }
 }
 
 .critter-image {
@@ -20,15 +26,29 @@ label {
     margin: 0;
   }
   button {
-    margin-left:15px;
+    width: 100%;
   }
 }
 
 .submit-btn {
-  width: 100%;
+  width: 85%;
 }
 
 .err-message {
   color: red;
+}
+
+.panel-img {
+  img {
+     width: 100%;
+  }
+
+  border: 5px solid black;
+  border-radius: 50%;
+  height: 175px;
+}
+
+.active-critter {
+  border: 7px solid green;
 }
 

@@ -1,11 +1,29 @@
-<section id="monitor">
-  <button ng-click='deleteMeasurements()'>Delete All</button>
-
-  length: {{measurements.length}}
-
-  current: {{current}}
-
-  {{measurements}}
-
-
-</section>
+<div class='container monitor-container'>
+    <div class='row currents'>
+        <div class='col-md-4'>
+            <div class='measure-circle center' ng-class='{"danger": tempDanger}'>
+                <h2 class='circle-text'>{{current.temperature}} &deg;F</h2>
+            </div>
+        </div>
+        <div class='col-md-4'>
+            <div class='measure-circle center' ng-class='{"danger": humidDanger}'>
+                <h2 class='circle-text'>{{current.humidity}} %</h2>
+            </div>
+        </div>
+        <div class='col-md-2 center'>
+          <h2>{{activeCritter.name}}</h2>
+          <h3>Temperature</h3>
+          <h4>High: {{activeCritter.temperature.high}}</h4>
+          <h4>Low: {{activeCritter.temperature.low}}</h4>
+          <h3>Humidity</h3>
+          <h4>High: {{activeCritter.humidity.high}}</h4>
+          <h4>Low: {{activeCritter.humidity.low}}</h4>
+         
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class='col-md-9'>
+    <logs measurements='measurements'></logs>
+  </div>
+    </div>

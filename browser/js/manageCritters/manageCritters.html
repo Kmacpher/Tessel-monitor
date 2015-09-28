@@ -1,16 +1,32 @@
 <section id='manage-critters'>
 
-  <h3>Active Critter: {{activeCritter.name}}</h3>
+  <div class='row'>
 
-  <button ui-sref='manageCritters.detail({id: "new"})'>Add Critter</button>
+    <div class='container col-md-2'>
 
-  <div ng-repeat='critter in critters'>
+      <div class='panel-img' ui-sref='manageCritters.detail({id: "new"})'>
+        <img src='http://www.veryicon.com/icon/ico/System/Icons8%20Metro%20Style/Mathematic%20Plus2.ico'/> 
+      </div>
+      <h4 class='center'>New Critter</h4>
 
-    <button ui-sref='manageCritters.detail({id: critter._id})'>{{critter.name}}</button>
+      <div ng-repeat='critter in critters'>
+
+        <hr>
+
+        <div class='panel-img' ng-class="{'active-critter': critter.active}" ui-sref='manageCritters.detail({id: critter._id})'>
+          <img src = '{{critter.photo}}'/> 
+        </div>
+        <h4 class='center'>{{critter.name}}</h4>
+
+      </div>
+    </div>
+
+    <div class='container col-md-10'>
+      <ui-view></ui-view>
+    </div>
+    
 
   </div>
-
-  <ui-view></ui-view>
 
 
 </section>

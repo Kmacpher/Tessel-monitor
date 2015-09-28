@@ -14,6 +14,22 @@ router.get('/active', function(req, res, next) {
   }).then(null, next);
 });
 
+router.put('/active/:id', function(req, res, next) {
+  console.log('am I here?');
+  Critter.findOne({active: true}).then(function(oldActive) {
+    console.log(oldActive.name);
+    oldActive.active = false;
+    return oldActive.save();
+  }).then(function() {
+    return Critter.findById(req.params.id);
+  }).then(function(newActive) {
+    newActive.active = true;
+    return newActive.save();
+  }).then(function(activeCritter) {
+    res.send(activeCritter);
+  }).then(null, next);
+});
+
 router.get('/:id', function(req, res, next) {
   Critter.findById(req.params.id).then(function(critter) {
     res.send(critter);

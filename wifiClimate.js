@@ -48,8 +48,8 @@ climate.on('ready', function () {
       climate.readHumidity(function (err, humid) {
         temp -= 11;
         var postData = JSON.stringify({
-          'temperature': temp.toFixed(4),
-          'humidity': humid.toFixed(4)
+          'temperature': temp.toFixed(2),
+          'humidity': humid.toFixed(2)
         });
         SendData(postData);
         setTimeout(loop, 5000);

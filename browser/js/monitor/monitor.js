@@ -19,16 +19,26 @@ app.controller('MonitorCtrl', function($scope, MeasureFactory, activeCritter) {
     .then(function(measurements) {
 
         $scope.measurements = measurements;
-        $scope.current = measurements[measurements.length-1];
+        $scope.current = measurements[0];
+
 
         setInterval(function() {
           MeasureFactory.getMeasurements($scope.activeCritter._id)
           .then(function(measures) {
             $scope.measurements = measures;
-            $scope.current = measures[measures.length-1];
+            $scope.current = measures[0];
+
+            if($scope.current.temperature > activeCritter.temperature.high ||
+              $scope.current.temperature < activeCritter.temperature.low) {
+              $scope.tempDanger = true;
+            }
+            if($scope.current.humidity > activeCritter.humidity.high ||
+              $scope.current.humidity < activeCritter.humidity.low) {
+              $scope.humidDanger = true;
+            }
           });
 
-        },5000);
+        },5000); //will be every 5 min in future
 
     });
     
@@ -44,6 +54,8 @@ app.controller('MonitorCtrl', function($scope, MeasureFactory, activeCritter) {
         console.log('all measurements deleted');
       });
     };
+
+
 
 });
 

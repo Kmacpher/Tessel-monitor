@@ -40,7 +40,7 @@ var seedCritters = function () {
                 low: 60
             },
             active: true,
-            photo: 'https://static.fjcdn.com/comments/People+like+my+snake+or+something+_8c9bd0113459f7c48e1ca1cbc1b3ae72.png'
+            photo: 'http://static1.fjcdn.com/thumbnails/comments/People+like+my+snake+or+something+_8c9bd0113459f7c48e1ca1cbc1b3ae72.png'
         },
         {
             name: 'Loki',
