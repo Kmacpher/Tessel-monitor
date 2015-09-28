@@ -35,10 +35,22 @@ app.controller('CritterCtrl', function($scope, critter, activeCritter, CritterFa
     }
     else {
       CritterFactory.updateCritter($scope.critter)
-      .then(function(critter) {
+      .then(function() {
         $scope.message = $scope.critter.name + '\'s settings were successfully updated';
       });
     }
+  };
+
+  $scope.makeActive = function() {
+    CritterFactory.makeActive($scope.critter)
+    .then(function(active) {
+      $scope.critter = active;
+      $scope.activeCritter = active;
+      CritterFactory.getAllCritters()
+        .then(function(critters) {
+          $scope.$parent.critters = critters;
+        });
+    });
   };
 
 

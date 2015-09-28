@@ -1,0 +1,36 @@
+
+
+
+<div class='row center'>
+  <div class='col-md-3'>
+    <h3>Date</h3>
+  </div>
+  <div class='col-md-3'>
+    <h3>Temperature</h3>
+  </div>
+  <div class='col-md-3'>
+    <h3>Humidity</h3>
+  </div>
+   <button class='btn btn-danger delete-all' ng-click='deleteMeasurements()'>Delete All</button>
+</div>
+
+<hr class='col-md-9'>
+
+
+<div class='measure-logs' ng-repeat='log in measurements'>
+
+
+<div class='row center'>
+  <div class='col-md-3'>
+    <h4>{{log.date | datetime}}</h4>
+  </div>
+  <div class='col-md-3'>
+    <h4>{{log.temperature}} &deg;F</h4>
+  </div>
+  <div class='col-md-3'>
+    <h4>{{log.humidity}} %</h4>
+  </div>
+</div>
+
+</div>
+
