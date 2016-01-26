@@ -12,11 +12,11 @@ function getActiveCritter() {
 
 function compareData(critter, postData) {
     if(critter.temperature.low > postData.temperature || critter.temperature.high < postData.temperature) {
-      //myTwilio.sendMessage(critter, 'temperature', postData);
+      myTwilio.sendMessage(critter, 'temperature', postData);
     }
 
     if(critter.humidity.low > postData.humidity || critter.humidity.high < postData.humidity) {
-      //myTwilio.sendMessage(critter, 'humidity', postData);
+      myTwilio.sendMessage(critter, 'humidity', postData);
     }
       
 }

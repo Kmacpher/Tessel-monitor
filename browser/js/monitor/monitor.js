@@ -21,6 +21,15 @@ app.controller('MonitorCtrl', function($scope, MeasureFactory, activeCritter) {
         $scope.measurements = measurements;
         $scope.current = measurements[0];
 
+        if($scope.current.temperature > activeCritter.temperature.high ||
+          $scope.current.temperature < activeCritter.temperature.low) {
+          $scope.tempDanger = true;
+        }
+        if($scope.current.humidity > activeCritter.humidity.high ||
+          $scope.current.humidity < activeCritter.humidity.low) {
+          $scope.humidDanger = true;
+        }
+
 
         setInterval(function() {
           MeasureFactory.getMeasurements($scope.activeCritter._id)
